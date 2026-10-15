@@ -1,0 +1,197 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+  background: #f3f7f5;
+  color: #1f2d2a;
+  padding: 20px 24px 32px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.app-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+header h1 { font-size: 22px; color: #0d6e57; }
+header p { font-size: 13px; color: #5b6b67; margin-top: 2px; }
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2ebe7;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.card h2 { font-size: 16px; margin-bottom: 12px; color: #0d6e57; }
+
+.field { margin-bottom: 14px; }
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #33403c;
+}
+
+.row { display: flex; align-items: center; gap: 10px; }
+
+input[type="text"] {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1px solid #cfdad5;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background: #fbfdfc;
+}
+input[type="text"]:focus { border-color: #12a97c; box-shadow: 0 0 0 3px rgba(18, 169, 124, 0.15); }
+
+.size-input { max-width: 140px; flex: none; }
+
+.hint { font-size: 12px; color: #7a8a85; }
+
+.btn {
+  padding: 9px 20px;
+  border: 1px solid #cfdad5;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:hover { background: #f0f5f3; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn.primary {
+  background: #12a97c;
+  border-color: #12a97c;
+  color: #fff;
+  font-weight: 600;
+}
+.btn.primary:hover { background: #0e9068; }
+
+.btn.danger {
+  background: #d84545;
+  border-color: #d84545;
+  color: #fff;
+  font-weight: 600;
+}
+.btn.danger:hover:not(:disabled) { background: #c13333; }
+
+.actions { margin-top: 6px; }
+
+.busy { font-size: 13px; color: #0d6e57; }
+
+.warning {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: #9a3412;
+  line-height: 1.6;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.stat {
+  border-radius: 10px;
+  padding: 14px 12px;
+  text-align: center;
+  border: 1px solid #e2ebe7;
+  background: #fbfdfc;
+}
+.stat .num { font-size: 26px; font-weight: 700; }
+.stat .label { font-size: 13px; margin-top: 4px; color: #33403c; }
+.stat .sub { font-size: 11.5px; margin-top: 2px; color: #7a8a85; }
+
+.stat.keep .num { color: #0d6e57; }
+.stat.move .num { color: #b45309; }
+.stat.del .num { color: #c13333; }
+
+.scan-errors {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #b91c1c;
+  max-height: 90px;
+  overflow-y: auto;
+}
+
+details summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: #0d6e57;
+  user-select: none;
+}
+
+.big-list {
+  margin-top: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid #e2ebe7;
+  border-radius: 8px;
+  font-size: 12.5px;
+  list-style: none;
+}
+.big-list li {
+  padding: 6px 12px;
+  border-bottom: 1px solid #eef3f1;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.big-list li:last-child { border-bottom: none; }
+.big-list .path { word-break: break-all; color: #33403c; }
+.big-list .size { color: #0d6e57; white-space: nowrap; font-weight: 600; }
+.big-list .tag {
+  font-size: 11px;
+  color: #b45309;
+  white-space: nowrap;
+}
+
+.summary-line {
+  font-size: 13.5px;
+  margin-bottom: 10px;
+  line-height: 1.7;
+  color: #33403c;
+}
+.summary-line b { color: #0d6e57; }
+.summary-line .bad { color: #c13333; }
+
+.log {
+  background: #0f1a17;
+  color: #c8e6da;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  height: 240px;
+  overflow-y: auto;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.log .t { color: #5b7a70; }
+.log .err { color: #ff9c9c; }
+.log .skip { color: #f5c97b; }

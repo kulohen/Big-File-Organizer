@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>大文件管家</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="assets/icon.png" alt="icon" class="app-icon">
+    <div>
+      <h1>大文件管家</h1>
+      <p>把大于阈值的文件归置到文件夹一级目录，其余内容移入回收站</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="field">
+        <label for="folderInput">目标文件夹</label>
+        <div class="row">
+          <input id="folderInput" type="text" placeholder="手动输入路径，或点击右侧按钮选择，例如 D:\Downloads">
+          <button id="browseBtn" class="btn">浏览…</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="sizeInput">大小阈值（大于该值的文件会被保留）</label>
+        <div class="row">
+          <input id="sizeInput" type="text" value="200M" class="size-input">
+          <span class="hint">支持 200M、1000M、1.5G、500K 等写法；不带单位默认按 M 处理</span>
+        </div>
+      </div>
+
+      <div class="row actions">
+        <button id="previewBtn" class="btn primary">预　览</button>
+        <button id="executeBtn" class="btn danger" disabled>正式执行</button>
+        <span id="busyText" class="busy" hidden>处理中，请稍候…</span>
+      </div>
+
+      <div class="warning">
+        ⚠️ 执行后：大于阈值的文件会被移动到所选文件夹的一级目录；其余文件和文件夹将被删除（移入系统回收站）。请务必先预览确认。
+      </div>
+    </section>
+
+    <section class="card" id="previewCard" hidden>
+      <h2>预览结果</h2>
+      <div class="stats">
+        <div class="stat keep">
+          <div class="num" id="statKeep">0</div>
+          <div class="label">保留的大文件</div>
+          <div class="sub" id="statKeepSize"></div>
+        </div>
+        <div class="stat move">
+          <div class="num" id="statMove">0</div>
+          <div class="label">需移动到一级目录</div>
+          <div class="sub" id="statThreshold"></div>
+        </div>
+        <div class="stat del">
+          <div class="num" id="statDelFiles">0</div>
+          <div class="label">将删除的文件</div>
+          <div class="sub" id="statDelSize"></div>
+        </div>
+        <div class="stat del">
+          <div class="num" id="statDelFolders">0</div>
+          <div class="label">将删除的文件夹</div>
+          <div class="sub">含文件夹内全部内容</div>
+        </div>
+      </div>
+      <div id="scanErrors" class="scan-errors" hidden></div>
+      <details id="bigListWrap">
+        <summary>查看将保留的大文件清单</summary>
+        <ul id="bigList" class="big-list"></ul>
+        <div id="bigListTrunc" class="hint" hidden>（仅显示前 500 条）</div>
+      </details>
+    </section>
+
+    <section class="card" id="logCard" hidden>
+      <h2>执行情况</h2>
+      <div id="summaryLine" class="summary-line"></div>
+      <div id="log" class="log"></div>
+    </section>
+  </main>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
